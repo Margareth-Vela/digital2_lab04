@@ -1,4 +1,4 @@
-# 1 "Lab04_main_master.c"
+# 1 "Lab04_main_slave.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "Lab04_main_master.c" 2
-# 16 "Lab04_main_master.c"
+# 1 "Lab04_main_slave.c" 2
+# 16 "Lab04_main_slave.c"
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 16 "Lab04_main_master.c" 2
+# 16 "Lab04_main_slave.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 17 "Lab04_main_master.c" 2
+# 17 "Lab04_main_slave.c" 2
 
 # 1 "./I2C.h" 1
 # 20 "./I2C.h"
@@ -2666,8 +2666,8 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 18 "Lab04_main_master.c" 2
-# 29 "Lab04_main_master.c"
+# 18 "Lab04_main_slave.c" 2
+# 29 "Lab04_main_slave.c"
 #pragma config FOSC = INTRC_NOCLKOUT
 
 
@@ -2698,6 +2698,12 @@ void I2C_Slave_Init(uint8_t address);
 
 
 
+uint8_t POT;
+uint8_t z;
+
+
+
+
 void setup(void);
 
 
@@ -2705,13 +2711,9 @@ void setup(void);
 
 void main(void) {
     setup();
+    ADCON0bits.GO = 1;
     while(1){
 
-        I2C_Master_Start();
-        I2C_Master_Write(0x71);
-        PORTB = I2C_Master_Read(0);
-        I2C_Master_Stop();
-        _delay((unsigned long)((200)*(8000000/4000.0)));
     }
     return;
 }
@@ -2721,6 +2723,44 @@ void main(void) {
 
 void __attribute__((picinterrupt((""))))isr(void){
     (INTCONbits.GIE = 0);
+     if (ADIF == 1){
+        POT = ADRESH;
+        ADIF = 0;
+        _delay((unsigned long)((60)*(8000000/4000000.0)));
+        ADCON0bits.GO = 1;
+    }
+       if(PIR1bits.SSPIF == 1){
+
+        SSPCONbits.CKP = 0;
+
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+            z = SSPBUF;
+            SSPCONbits.SSPOV = 0;
+            SSPCONbits.WCOL = 0;
+            SSPCONbits.CKP = 1;
+        }
+
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+
+            z = SSPBUF;
+
+            PIR1bits.SSPIF = 0;
+            SSPCONbits.CKP = 1;
+            while(!SSPSTATbits.BF);
+
+            _delay((unsigned long)((250)*(8000000/4000000.0)));
+
+        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+            z = SSPBUF;
+            BF = 0;
+            SSPBUF = POT;
+            SSPCONbits.CKP = 1;
+            _delay((unsigned long)((250)*(8000000/4000000.0)));
+            while(SSPSTATbits.BF);
+        }
+
+        PIR1bits.SSPIF = 0;
+    }
 
     (INTCONbits.GIE = 1);
 }
@@ -2737,11 +2777,11 @@ void setup(void){
 
 
     ANSELH = 0x00;
-    ANSEL = 0x00;
+    ANSEL = 0x01;
 
-    TRISA = 0x00;
+    TRISA = 0x01;
     TRISB = 0x00;
-    TRISC = 0x00;
+    TRISC = 0x08;
     TRISD = 0x00;
     TRISE = 0x00;
 
@@ -2752,7 +2792,18 @@ void setup(void){
     PORTE = 0x00;
 
 
-    INTCONbits.GIE = 0;
-    INTCONbits.PEIE = 0;
-    I2C_Master_Init(100000);
+    ADCON1bits.ADFM = 0;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+
+    ADCON0bits.ADCS = 0b10;
+    ADCON0bits.CHS = 0;
+    ADCON0bits.ADON = 1;
+    _delay((unsigned long)((50)*(8000000/4000000.0)));
+    ADCON0bits.GO = 1;
+
+
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    I2C_Slave_Init(0x70);
 }

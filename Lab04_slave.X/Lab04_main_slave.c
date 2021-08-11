@@ -1,10 +1,10 @@
 /*
- * Archivo:   Lab04_main_master.c
+ * Archivo:   Lab04_main_slave.c
  * Dispositivo: PIC16F887
  * Autor: Margareth Vela 
  * 
  * Programa: I2C
- * Hardware: Leds en PORTB
+ * Hardware: Potenciómetro en PORTA
  * 
  * Creado: Agosto 09, 2021
  * Última modificación: Agosto 11, 2021
@@ -54,6 +54,12 @@
                                 //(Write protection off)
 
 //------------------------------------------------------------------------------
+//                          Variables
+//------------------------------------------------------------------------------
+uint8_t POT; //Para ADC
+uint8_t z; //Para I2C
+
+//------------------------------------------------------------------------------
 //                          Prototipos
 //------------------------------------------------------------------------------
 void setup(void);  //Configuración
@@ -62,14 +68,10 @@ void setup(void);  //Configuración
 //                          Código Principal
 //------------------------------------------------------------------------------
 void main(void) {
-    setup();   
+    setup(); 
+    ADCON0bits.GO = 1;
     while(1){
-        
-        I2C_Master_Start();         //INICIALIZAMOS LA COMUNICACION
-        I2C_Master_Write(0x71);     //ESCRIBIMOS A LA DIRECCION PARA LEER
-        PORTB = I2C_Master_Read(0); //AGREGAMOS EL VALOR AL PORTD
-        I2C_Master_Stop();          //DETENEMOS LA COMUNICACION
-        __delay_ms(200);
+
     }
     return;
 }
@@ -78,7 +80,45 @@ void main(void) {
 //                          Interrupciones
 //------------------------------------------------------------------------------
 void __interrupt()isr(void){
-    di();
+    di();                   //PUSH
+     if (ADIF == 1){                            
+        POT = ADRESH;
+        ADIF = 0; //Limpiar la bandera de ADC
+        __delay_us(60);
+        ADCON0bits.GO = 1; //Inicia la conversión de ADC
+    }
+       if(PIR1bits.SSPIF == 1){ 
+
+        SSPCONbits.CKP = 0;
+       
+        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+            z = SSPBUF;                 // LEEMOS EL VALOR DEL BUFFER Y AGREGAMOS A UNA VARIABLE
+            SSPCONbits.SSPOV = 0;       // LIMPIAMOS LA BANDERA DE OVERFLOW
+            SSPCONbits.WCOL = 0;        // LIMPIAMOS EL BIT DE COLISION
+            SSPCONbits.CKP = 1;         // HABILITAMOS SCL
+        }
+
+        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+            //__delay_us(7);
+            z = SSPBUF;                 // LEEMOS EL VALOR DEL BUFFER Y AGREGAMOS A UNA VARIABLE
+            //__delay_us(2);
+            PIR1bits.SSPIF = 0;         // LIMPIAMOS BANDERA DE INTERUPCION RECEPCION/TRANSMISION SSP
+            SSPCONbits.CKP = 1;         // HABILITA LOS PULSOS DEL RELOJ SCL
+            while(!SSPSTATbits.BF);     // HASTA QUE LA RECEPCION SE REALICE
+           // PORTD = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepción
+            __delay_us(250);
+            
+        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+            z = SSPBUF;
+            BF = 0;
+            SSPBUF = POT;
+            SSPCONbits.CKP = 1;
+            __delay_us(250);
+            while(SSPSTATbits.BF);
+        }
+       
+        PIR1bits.SSPIF = 0;    
+    }
     
     ei();                           //POP
 }
@@ -95,11 +135,11 @@ void setup(void){
     
     //Configurar entradas y salidas
     ANSELH = 0x00;//Pines digitales
-    ANSEL = 0x00; //Pines digitales
+    ANSEL = 0x01; //Pines digitales
     
-    TRISA = 0x00; //Salidas
+    TRISA = 0x01; //Para POT
     TRISB = 0x00;
-    TRISC = 0x00; 
+    TRISC = 0x08; 
     TRISD = 0x00; 
     TRISE = 0x00; 
     
@@ -109,8 +149,19 @@ void setup(void){
     PORTD = 0x00;
     PORTE = 0x00;
     
+    //Configurar ADC
+    ADCON1bits.ADFM = 0; //Justificar a la izquierda
+    ADCON1bits.VCFG0 = 0; //Vss
+    ADCON1bits.VCFG1 = 0; //VDD
+
+    ADCON0bits.ADCS = 0b10; //ADC oscilador -> Fosc/32
+    ADCON0bits.CHS = 0;     //Comenzar en canal 0       
+    ADCON0bits.ADON = 1;    //Habilitar la conversión ADC
+    __delay_us(50); 
+    ADCON0bits.GO = 1;
+    
     //Configurar la interrupcion
-    INTCONbits.GIE = 0;  //Enable interrupciones globales
-    INTCONbits.PEIE = 0;           
-    I2C_Master_Init(100000); // INICIALIZAR MASTER A FRECUENCIA DE 100kHz
+    INTCONbits.GIE = 1;  //Enable interrupciones globales
+    INTCONbits.PEIE = 1;           
+    I2C_Slave_Init(0x70); //DIRECCION DEL I2C ESCLAVO
 }
