@@ -69,7 +69,7 @@ void setup(void);  //Configuración
 //------------------------------------------------------------------------------
 void main(void) {
     setup(); 
-    ADCON0bits.GO = 1;
+    ADCON0bits.GO = 1; //Inicia conversion ADC
     while(1){
 
     }
@@ -92,27 +92,24 @@ void __interrupt()isr(void){
         SSPCONbits.CKP = 0;
        
         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
-            z = SSPBUF;                 // LEEMOS EL VALOR DEL BUFFER Y AGREGAMOS A UNA VARIABLE
-            SSPCONbits.SSPOV = 0;       // LIMPIAMOS LA BANDERA DE OVERFLOW
-            SSPCONbits.WCOL = 0;        // LIMPIAMOS EL BIT DE COLISION
-            SSPCONbits.CKP = 1;         // HABILITAMOS SCL
+            z = SSPBUF;    //Lee el valor del buffer y lo agrega a la variable
+            SSPCONbits.SSPOV = 0;       //Se limpia la bandera de overflow
+            SSPCONbits.WCOL = 0;        //Se limpia el bit de colision
+            SSPCONbits.CKP = 1;         //Se habilita SCL
         }
 
         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
-            //__delay_us(7);
-            z = SSPBUF;                 // LEEMOS EL VALOR DEL BUFFER Y AGREGAMOS A UNA VARIABLE
-            //__delay_us(2);
-            PIR1bits.SSPIF = 0;         // LIMPIAMOS BANDERA DE INTERUPCION RECEPCION/TRANSMISION SSP
-            SSPCONbits.CKP = 1;         // HABILITA LOS PULSOS DEL RELOJ SCL
-            while(!SSPSTATbits.BF);     // HASTA QUE LA RECEPCION SE REALICE
-           // PORTD = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepción
+            z = SSPBUF;     //Lee el valor del buffer y lo agrega a la variable
+            PIR1bits.SSPIF = 0;         //Limpia la bandera de SSP
+            SSPCONbits.CKP = 1;         //Habilita los pulsos del reloj SCL
+            while(!SSPSTATbits.BF);     //Hasta que la recepcion se realice
             __delay_us(250);
             
         }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
-            z = SSPBUF;
+            z = SSPBUF; //Lee el valor del buffer y lo agrega a la variabl
             BF = 0;
-            SSPBUF = POT;
-            SSPCONbits.CKP = 1;
+            SSPBUF = POT;//Escribe el valor de la variable al buffer
+            SSPCONbits.CKP = 1;//Habilita los pulsos del reloj SCL
             __delay_us(250);
             while(SSPSTATbits.BF);
         }
@@ -135,7 +132,7 @@ void setup(void){
     
     //Configurar entradas y salidas
     ANSELH = 0x00;//Pines digitales
-    ANSEL = 0x01; //Pines digitales
+    ANSEL = 0x01; //Primer pin analogico
     
     TRISA = 0x01; //Para POT
     TRISB = 0x00;
@@ -163,5 +160,5 @@ void setup(void){
     //Configurar la interrupcion
     INTCONbits.GIE = 1;  //Enable interrupciones globales
     INTCONbits.PEIE = 1;           
-    I2C_Slave_Init(0x70); //DIRECCION DEL I2C ESCLAVO
+    I2C_Slave_Init(0x70); //Direccion del esclavo
 }

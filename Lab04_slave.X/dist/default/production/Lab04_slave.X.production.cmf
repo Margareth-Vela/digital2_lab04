@@ -21,7 +21,7 @@ cstackCOMMON COMMON 1 70 70 5 1
 intentry CODE 0 4 4 8 2
 bssCOMMON COMMON 1 75 75 2 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\vema3\AppData\Local\Temp\se48.o
+$C:\Users\vema3\AppData\Local\Temp\s4mk.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -71,13 +71,13 @@ STRING E6-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Lab04_slave.X.production.o
-F cinit CODE >656:C:\Users\vema3\AppData\Local\Temp\se48.s
-F cinit CODE >659:C:\Users\vema3\AppData\Local\Temp\se48.s
-F cinit CODE >673:C:\Users\vema3\AppData\Local\Temp\se48.s
-10 cinit CODE >674:C:\Users\vema3\AppData\Local\Temp\se48.s
-11 cinit CODE >680:C:\Users\vema3\AppData\Local\Temp\se48.s
-11 cinit CODE >682:C:\Users\vema3\AppData\Local\Temp\se48.s
-12 cinit CODE >683:C:\Users\vema3\AppData\Local\Temp\se48.s
+F cinit CODE >656:C:\Users\vema3\AppData\Local\Temp\s4mk.s
+F cinit CODE >659:C:\Users\vema3\AppData\Local\Temp\s4mk.s
+F cinit CODE >673:C:\Users\vema3\AppData\Local\Temp\s4mk.s
+10 cinit CODE >674:C:\Users\vema3\AppData\Local\Temp\s4mk.s
+11 cinit CODE >680:C:\Users\vema3\AppData\Local\Temp\s4mk.s
+11 cinit CODE >682:C:\Users\vema3\AppData\Local\Temp\s4mk.s
+12 cinit CODE >683:C:\Users\vema3\AppData\Local\Temp\s4mk.s
 4 intentry CODE >82:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
 15 text3 CODE >82:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
 15 text3 CODE >83:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
@@ -94,23 +94,23 @@ F cinit CODE >673:C:\Users\vema3\AppData\Local\Temp\se48.s
 3B text3 CODE >97:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
 3C text3 CODE >98:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
 3D text3 CODE >101:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-47 text3 CODE >103:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-4D text3 CODE >105:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-4E text3 CODE >106:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-4F text3 CODE >107:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-55 text3 CODE >109:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-5A text3 CODE >111:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-63 text3 CODE >112:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-69 text3 CODE >113:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-6C text3 CODE >114:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-70 text3 CODE >115:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-71 text3 CODE >116:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-76 text3 CODE >117:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-7C text3 CODE >118:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-7C text3 CODE >120:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-7F text3 CODE >121:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-7F text3 CODE >123:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-80 text3 CODE >124:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+47 text3 CODE >102:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+4D text3 CODE >103:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+4E text3 CODE >104:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+4F text3 CODE >105:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+55 text3 CODE >106:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+5A text3 CODE >108:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+63 text3 CODE >109:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+69 text3 CODE >110:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+6C text3 CODE >111:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+70 text3 CODE >112:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+71 text3 CODE >113:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+76 text3 CODE >114:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+7C text3 CODE >115:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+7C text3 CODE >117:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+7F text3 CODE >118:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+7F text3 CODE >120:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+80 text3 CODE >121:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
 C0 text2 CODE >93:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\I2C.c
 C1 text2 CODE >95:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\I2C.c
 C5 text2 CODE >96:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\I2C.c
@@ -123,35 +123,35 @@ D2 text2 CODE >102:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04
 D3 text2 CODE >103:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\I2C.c
 D6 text2 CODE >104:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\I2C.c
 D9 text2 CODE >105:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\I2C.c
-87 text1 CODE >129:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-87 text1 CODE >131:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-8A text1 CODE >132:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-8B text1 CODE >133:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-8C text1 CODE >134:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-8D text1 CODE >137:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-90 text1 CODE >138:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-92 text1 CODE >140:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-96 text1 CODE >141:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-97 text1 CODE >142:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-99 text1 CODE >143:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-9A text1 CODE >144:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-9B text1 CODE >146:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-9E text1 CODE >147:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-9F text1 CODE >148:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-A0 text1 CODE >149:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-A1 text1 CODE >150:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-A2 text1 CODE >153:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-A5 text1 CODE >154:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-A6 text1 CODE >155:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-A7 text1 CODE >157:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-AD text1 CODE >158:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-AF text1 CODE >159:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-B0 text1 CODE >160:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-B4 text1 CODE >161:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-B7 text1 CODE >164:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-B8 text1 CODE >165:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-B9 text1 CODE >166:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
-BF text1 CODE >167:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+87 text1 CODE >126:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+87 text1 CODE >128:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+8A text1 CODE >129:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+8B text1 CODE >130:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+8C text1 CODE >131:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+8D text1 CODE >134:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+90 text1 CODE >135:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+92 text1 CODE >137:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+96 text1 CODE >138:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+97 text1 CODE >139:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+99 text1 CODE >140:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+9A text1 CODE >141:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+9B text1 CODE >143:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+9E text1 CODE >144:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+9F text1 CODE >145:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+A0 text1 CODE >146:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+A1 text1 CODE >147:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+A2 text1 CODE >150:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+A5 text1 CODE >151:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+A6 text1 CODE >152:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+A7 text1 CODE >154:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+AD text1 CODE >155:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+AF text1 CODE >156:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+B0 text1 CODE >157:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+B4 text1 CODE >158:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+B7 text1 CODE >161:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+B8 text1 CODE >162:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+B9 text1 CODE >163:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
+BF text1 CODE >164:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
 DA maintext CODE >70:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
 DA maintext CODE >71:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
 DF maintext CODE >72:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab04\Lab04_slave.X\Lab04_main_slave.c
@@ -181,19 +181,19 @@ _BF 4A0 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 __Hstrings 0 0 ABS 0 strings -
 _ADIF 66 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 _PEIE 5E 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\vema3\AppData\Local\Temp\se48.o
+___sp 0 0 STACK 2 stack C:\Users\vema3\AppData\Local\Temp\s4mk.o
 _main 1B4 0 CODE 0 maintext dist/default/production\Lab04_slave.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
-start 18 0 CODE 0 init C:\Users\vema3\AppData\Local\Temp\se48.o
+start 18 0 CODE 0 init C:\Users\vema3\AppData\Local\Temp\s4mk.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\se48.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\se48.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\se48.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\se48.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\se48.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\se48.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\s4mk.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\s4mk.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\s4mk.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\s4mk.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\s4mk.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\s4mk.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
@@ -203,8 +203,8 @@ _ADRESH 1E 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 _ANSELH 189 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 _SSPCONbits 14 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\vema3\AppData\Local\Temp\se48.o
-___stacklo 0 0 ABS 0 - C:\Users\vema3\AppData\Local\Temp\se48.o
+___stackhi 0 0 ABS 0 - C:\Users\vema3\AppData\Local\Temp\s4mk.o
+___stacklo 0 0 ABS 0 - C:\Users\vema3\AppData\Local\Temp\s4mk.o
 _I2C_Slave_Init 180 0 CODE 0 text2 dist/default/production\Lab04_slave.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\Lab04_slave.X.production.o
@@ -214,7 +214,7 @@ _SSPBUF 13 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 _SSPCON 14 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 _TRISC4 43C 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\vema3\AppData\Local\Temp\se48.o
+___int_sp 0 0 STACK 2 stack C:\Users\vema3\AppData\Local\Temp\s4mk.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -259,7 +259,7 @@ _isr 2A 0 CODE 0 text3 dist/default/production\Lab04_slave.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\Lab04_slave.X.production.o
 __end_of_isr 10E 0 CODE 0 text3 dist/default/production\Lab04_slave.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\vema3\AppData\Local\Temp\se48.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\vema3\AppData\Local\Temp\s4mk.o
 __pmaintext 1B4 0 CODE 0 maintext dist/default/production\Lab04_slave.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -

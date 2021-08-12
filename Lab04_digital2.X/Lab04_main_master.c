@@ -4,10 +4,10 @@
  * Autor: Margareth Vela 
  * 
  * Programa: I2C
- * Hardware: Leds en PORTB
+ * Hardware: LCD en PORTD
  * 
  * Creado: Agosto 09, 2021
- * Última modificación: Agosto 11, 2021
+ * Última modificación: Agosto 12, 2021
  */
 
 //------------------------------------------------------------------------------
@@ -16,11 +16,24 @@
 #include <xc.h>
 #include <stdint.h>
 #include "I2C.h"
+#include "LCD.h"
 
 //------------------------------------------------------------------------------
 //                          Directivas del compilador
 //------------------------------------------------------------------------------
-#define _XTAL_FREQ 8000000 //Para delay
+#define _XTAL_FREQ 8000000 //Oscilador
+#define ENTER 13 //Enter en Ascii
+#define PUNTO 46 //Punto en Ascii
+
+//------------------------------------------------------------------------------
+//                          Variables
+//------------------------------------------------------------------------------
+uint16_t POT = 0; //Valor del potenciometro 
+uint8_t Unidad; //Para conversion a decimal
+uint8_t Primer_decimal;
+uint8_t Segundo_decimal;
+uint8_t CONTADOR; //Valor del contador
+uint16_t val_temp; //Valor del sensor
 
 //------------------------------------------------------------------------------
 //                          Palabras de configuración
@@ -57,19 +70,68 @@
 //                          Prototipos
 //------------------------------------------------------------------------------
 void setup(void);  //Configuración
+void Decimal(uint16_t var); //Conversion a decimal
 
 //------------------------------------------------------------------------------
 //                          Código Principal
 //------------------------------------------------------------------------------
 void main(void) {
-    setup();   
+    setup(); 
+    Lcd_Init();                     
+    Lcd_Clear();  //Limpiar LCD
+    Lcd_Set_Cursor(1,1); //Cursor en fila uno primera posicion 
+    Lcd_Write_String(" S1:   S2:   S3:"); 
     while(1){
         
-        I2C_Master_Start();         //INICIALIZAMOS LA COMUNICACION
-        I2C_Master_Write(0x71);     //ESCRIBIMOS A LA DIRECCION PARA LEER
-        PORTB = I2C_Master_Read(0); //AGREGAMOS EL VALOR AL PORTD
-        I2C_Master_Stop();          //DETENEMOS LA COMUNICACION
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x71);     //Direccion de lectura del primer esclavo
+        POT = I2C_Master_Read(0); //Se agrega el valor del potenciometro
+        I2C_Master_Stop();          //Termina la comunicacion 
         __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x81);     //Direccion de lectura del segundo esclavo
+        CONTADOR = I2C_Master_Read(0); //Se agrega el valor del contador
+        I2C_Master_Stop();          //Termina la comunicacion 
+        __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x90);     //Direccion de lectura del sensor I2C
+        I2C_Master_Write(0xEE);     //Configuracion del sensor
+        I2C_Master_Stop();          //Termina la comunicacion 
+        __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x90);     //Direccion de lectura del sensor I2C
+        I2C_Master_Write(0xAA);     //Lee el valor del sensor
+        I2C_Master_Stop();          //Termina la comunicacion
+        __delay_ms(200);
+        
+        I2C_Master_Start();         //Se inicializa la comunicacion I2C
+        I2C_Master_Write(0x91);     //Direccion de lectura del sensor I2C
+        val_temp = I2C_Master_Read(0); //Se agrega el valor del sensor
+        I2C_Master_Stop();          //Termina la comunicacion
+        __delay_ms(200);
+        
+        POT= POT*1.961; //Conversion del valor del pot a 5V
+        Decimal(POT);             //Conversion a decimal
+        Lcd_Set_Cursor(2,1);        //Se agrega el valor a la LCD
+        Lcd_Write_Char(Unidad);
+        Lcd_Write_Char(PUNTO);
+        Lcd_Write_Char(Primer_decimal);
+        Lcd_Write_Char(Segundo_decimal);
+        Lcd_Write_String("  ");
+        
+        Decimal(CONTADOR);             //Conversion a decimal del contador
+        Lcd_Write_Char(Unidad);
+        Lcd_Write_Char(Primer_decimal);
+        Lcd_Write_Char(Segundo_decimal);
+        Lcd_Write_String("  ");
+        
+        Decimal(val_temp);                  //Conversion a decimal del sensor
+        Lcd_Write_Char(Unidad);
+        Lcd_Write_Char(Primer_decimal);
+        Lcd_Write_Char(Segundo_decimal);
     }
     return;
 }
@@ -78,9 +140,26 @@ void main(void) {
 //                          Interrupciones
 //------------------------------------------------------------------------------
 void __interrupt()isr(void){
-    di();
-    
+    di();   
     ei();                           //POP
+}
+
+//------------------------------------------------------------------------------
+//                          Subrutinas
+//------------------------------------------------------------------------------
+void Decimal(uint16_t variable){        // Función para obtener valor decimal
+    uint16_t valor;
+    valor = variable;                  
+    Unidad = (valor/100) ;                //Valor del tercer digito
+    valor = (valor - (Unidad*100));
+    Primer_decimal = (valor/10);              //Valor del segundo digito
+    valor = (valor - (Primer_decimal*10));
+    Segundo_decimal = (valor);                //Valor del primer digito
+    
+    Unidad = Unidad + 48;          //Conversion a ascii
+    Primer_decimal = Primer_decimal + 48;
+    Segundo_decimal = Segundo_decimal + 48;
+    
 }
 
 //------------------------------------------------------------------------------
@@ -112,5 +191,5 @@ void setup(void){
     //Configurar la interrupcion
     INTCONbits.GIE = 0;  //Enable interrupciones globales
     INTCONbits.PEIE = 0;           
-    I2C_Master_Init(100000); // INICIALIZAR MASTER A FRECUENCIA DE 100kHz
+    I2C_Master_Init(100000); // Se inicializa la frecuencia del master a 100kHz
 }

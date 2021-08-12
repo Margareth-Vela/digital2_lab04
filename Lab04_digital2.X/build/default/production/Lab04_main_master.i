@@ -2667,7 +2667,39 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 void I2C_Slave_Init(uint8_t address);
 # 18 "Lab04_main_master.c" 2
-# 29 "Lab04_main_master.c"
+
+# 1 "./LCD.h" 1
+# 64 "./LCD.h"
+void Lcd_Port(char a);
+
+void Lcd_Cmd(char a);
+
+void Lcd_Clear(void);
+
+void Lcd_Set_Cursor(char a, char b);
+
+void Lcd_Init(void);
+
+void Lcd_Write_Char(char a);
+
+void Lcd_Write_String(char *a);
+
+void Lcd_Shift_Right(void);
+
+void Lcd_Shift_Left(void);
+# 19 "Lab04_main_master.c" 2
+# 31 "Lab04_main_master.c"
+uint16_t POT = 0;
+uint8_t Unidad;
+uint8_t Primer_decimal;
+uint8_t Segundo_decimal;
+uint8_t CONTADOR;
+uint16_t val_temp;
+
+
+
+
+
 #pragma config FOSC = INTRC_NOCLKOUT
 
 
@@ -2699,19 +2731,68 @@ void I2C_Slave_Init(uint8_t address);
 
 
 void setup(void);
+void Decimal(uint16_t var);
 
 
 
 
 void main(void) {
     setup();
+    Lcd_Init();
+    Lcd_Clear();
+    Lcd_Set_Cursor(1,1);
+    Lcd_Write_String(" S1:   S2:   S3:");
     while(1){
 
         I2C_Master_Start();
         I2C_Master_Write(0x71);
-        PORTB = I2C_Master_Read(0);
+        POT = I2C_Master_Read(0);
         I2C_Master_Stop();
         _delay((unsigned long)((200)*(8000000/4000.0)));
+
+        I2C_Master_Start();
+        I2C_Master_Write(0x81);
+        CONTADOR = I2C_Master_Read(0);
+        I2C_Master_Stop();
+        _delay((unsigned long)((200)*(8000000/4000.0)));
+
+        I2C_Master_Start();
+        I2C_Master_Write(0x90);
+        I2C_Master_Write(0xEE);
+        I2C_Master_Stop();
+        _delay((unsigned long)((200)*(8000000/4000.0)));
+
+        I2C_Master_Start();
+        I2C_Master_Write(0x90);
+        I2C_Master_Write(0xAA);
+        I2C_Master_Stop();
+        _delay((unsigned long)((200)*(8000000/4000.0)));
+
+        I2C_Master_Start();
+        I2C_Master_Write(0x91);
+        val_temp = I2C_Master_Read(0);
+        I2C_Master_Stop();
+        _delay((unsigned long)((200)*(8000000/4000.0)));
+
+        POT= POT*1.961;
+        Decimal(POT);
+        Lcd_Set_Cursor(2,1);
+        Lcd_Write_Char(Unidad);
+        Lcd_Write_Char(46);
+        Lcd_Write_Char(Primer_decimal);
+        Lcd_Write_Char(Segundo_decimal);
+        Lcd_Write_String("  ");
+
+        Decimal(CONTADOR);
+        Lcd_Write_Char(Unidad);
+        Lcd_Write_Char(Primer_decimal);
+        Lcd_Write_Char(Segundo_decimal);
+        Lcd_Write_String("  ");
+
+        Decimal(val_temp);
+        Lcd_Write_Char(Unidad);
+        Lcd_Write_Char(Primer_decimal);
+        Lcd_Write_Char(Segundo_decimal);
     }
     return;
 }
@@ -2721,8 +2802,25 @@ void main(void) {
 
 void __attribute__((picinterrupt((""))))isr(void){
     (INTCONbits.GIE = 0);
-
     (INTCONbits.GIE = 1);
+}
+
+
+
+
+void Decimal(uint16_t variable){
+    uint16_t valor;
+    valor = variable;
+    Unidad = (valor/100) ;
+    valor = (valor - (Unidad*100));
+    Primer_decimal = (valor/10);
+    valor = (valor - (Primer_decimal*10));
+    Segundo_decimal = (valor);
+
+    Unidad = Unidad + 48;
+    Primer_decimal = Primer_decimal + 48;
+    Segundo_decimal = Segundo_decimal + 48;
+
 }
 
 

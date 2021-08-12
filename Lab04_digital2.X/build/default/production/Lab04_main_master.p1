@@ -1,18 +1,27 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"59 Lab04_main_master.c
-[; ;Lab04_main_master.c: 59:     INTCONbits.PEIE = 0;
+"72 Lab04_main_master.c
+[; ;Lab04_main_master.c: 72: 
 [v _setup `(v ~T0 @X0 0 ef ]
+"72 ./LCD.h
+[; ;./LCD.h: 72: void Lcd_Init(void);
+[v _Lcd_Init `(v ~T0 @X0 0 ef ]
+"68
+[; ;./LCD.h: 68: void Lcd_Clear(void);
+[v _Lcd_Clear `(v ~T0 @X0 0 ef ]
+"70
+[; ;./LCD.h: 70: void Lcd_Set_Cursor(char a, char b);
+[v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
+"76
+[; ;./LCD.h: 76: void Lcd_Write_String(char *a);
+[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
 "41 ./I2C.h
 [; ;./I2C.h: 41: void I2C_Master_Start(void);
 [v _I2C_Master_Start `(v ~T0 @X0 0 ef ]
 "55
 [; ;./I2C.h: 55: void I2C_Master_Write(unsigned d);
 [v _I2C_Master_Write `(v ~T0 @X0 0 ef1`ui ]
-"228 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
-"60 ./I2C.h
+"60
 [; ;./I2C.h: 60: unsigned short I2C_Master_Read(unsigned short a);
 [v _I2C_Master_Read `(us ~T0 @X0 0 ef1`us ]
 "49
@@ -22,6 +31,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "92 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
 [v __delay `JF1256 ~T0 @X0 0 e ]
 [p i __delay ]
+"73 Lab04_main_master.c
+[; ;Lab04_main_master.c: 73: 
+[v _Decimal `(v ~T0 @X0 0 ef1`ui ]
+"74 ./LCD.h
+[; ;./LCD.h: 74: void Lcd_Write_Char(char a);
+[v _Lcd_Write_Char `(v ~T0 @X0 0 ef1`uc ]
 [t ~ __interrupt . k ]
 [t T1 __interrupt ]
 "465 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
@@ -78,6 +93,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "166
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 166: extern volatile unsigned char PORTA __attribute__((address(0x005)));
 [v _PORTA `Vuc ~T0 @X0 0 e@5 ]
+"228
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 "290
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 290: extern volatile unsigned char PORTC __attribute__((address(0x007)));
 [v _PORTC `Vuc ~T0 @X0 0 e@7 ]
@@ -324,129 +342,313 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"29 Lab04_main_master.c
-[; ;Lab04_main_master.c: 29: }
-[p x FOSC  =  INTRC_NOCLKOUT ]
+"31 Lab04_main_master.c
+[; ;Lab04_main_master.c: 31: uint16_t POT = 0;
+[; ;Lab04_main_master.c: 31:         I2C_Master_Write(0x90);
+[v _POT `ui ~T0 @X0 1 e ]
+[i _POT
+-> -> 0 `i `ui
+]
 "32
-[; ;Lab04_main_master.c: 32: 
-[p x WDTE  =  OFF  ]
+[; ;Lab04_main_master.c: 32: uint8_t Unidad;
+[; ;Lab04_main_master.c: 32:         I2C_Master_Write(0xEE);
+[v _Unidad `uc ~T0 @X0 1 e ]
+"33
+[; ;Lab04_main_master.c: 33: uint8_t Primer_decimal;
+[; ;Lab04_main_master.c: 33:         I2C_Master_Stop();
+[v _Primer_decimal `uc ~T0 @X0 1 e ]
 "34
-[; ;Lab04_main_master.c: 34: void setup(void){
-[p x PWRTE  =  ON        ]
+[; ;Lab04_main_master.c: 34: uint8_t Segundo_decimal;
+[; ;Lab04_main_master.c: 34:         _delay((unsigned long)((200)*(8000000/4000.0)));
+[v _Segundo_decimal `uc ~T0 @X0 1 e ]
 "35
+[; ;Lab04_main_master.c: 35: uint8_t CONTADOR;
 [; ;Lab04_main_master.c: 35: 
-[p x MCLRE  =  OFF       ]
-"38
-[; ;Lab04_main_master.c: 38:     OSCCONbits.IRCF0 = 1;
-[p x CP  =  OFF          ]
-"40
-[; ;Lab04_main_master.c: 40: 
-[p x CPD  =  OFF         ]
+[v _CONTADOR `uc ~T0 @X0 1 e ]
+"36
+[; ;Lab04_main_master.c: 36: uint16_t val_temp;
+[; ;Lab04_main_master.c: 36:         I2C_Master_Start();
+[v _val_temp `ui ~T0 @X0 1 e ]
 "42
-[; ;Lab04_main_master.c: 42:     ANSELH = 0x00;
-[p x BOREN  =  OFF       ]
-"43
-[; ;Lab04_main_master.c: 43:     ANSEL = 0x00;
-[p x IESO  =  OFF        ]
+[; ;Lab04_main_master.c: 42:         I2C_Master_Start();
+[p x FOSC  =  INTRC_NOCLKOUT ]
 "45
-[; ;Lab04_main_master.c: 45:     TRISA = 0x00;
-[p x FCMEN  =  OFF       ]
+[; ;Lab04_main_master.c: 45:         I2C_Master_Stop();
+[p x WDTE  =  OFF  ]
 "47
-[; ;Lab04_main_master.c: 47:     TRISC = 0x00;
-[p x LVP  =  OFF          ]
+[; ;Lab04_main_master.c: 47: 
+[p x PWRTE  =  ON        ]
+"48
+[; ;Lab04_main_master.c: 48:         POT= POT*1.961;
+[p x MCLRE  =  OFF       ]
 "51
-[; ;Lab04_main_master.c: 51:     PORTA = 0x00;
-[p x BOR4V  =  BOR40V    ]
+[; ;Lab04_main_master.c: 51:         Lcd_Write_Char(Unidad);
+[p x CP  =  OFF          ]
 "53
-[; ;Lab04_main_master.c: 53:     PORTC = 0x00;
+[; ;Lab04_main_master.c: 53:         Lcd_Write_Char(Primer_decimal);
+[p x CPD  =  OFF         ]
+"55
+[; ;Lab04_main_master.c: 55:         Lcd_Write_String("  ");
+[p x BOREN  =  OFF       ]
+"56
+[; ;Lab04_main_master.c: 56: 
+[p x IESO  =  OFF        ]
+"58
+[; ;Lab04_main_master.c: 58:         Lcd_Write_Char(Unidad);
+[p x FCMEN  =  OFF       ]
+"60
+[; ;Lab04_main_master.c: 60:         Lcd_Write_Char(Segundo_decimal);
+[p x LVP  =  OFF          ]
+"64
+[; ;Lab04_main_master.c: 64:         Lcd_Write_Char(Unidad);
+[p x BOR4V  =  BOR40V    ]
+"66
+[; ;Lab04_main_master.c: 66:         Lcd_Write_Char(Segundo_decimal);
 [p x WRT  =  OFF         ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"64
+"78
+[; ;Lab04_main_master.c: 78: 
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"65
+"79
+[; ;Lab04_main_master.c: 79: 
 [e ( _setup ..  ]
-"66
+"80
+[; ;Lab04_main_master.c: 80: 
+[e ( _Lcd_Init ..  ]
+"81
+[; ;Lab04_main_master.c: 81: 
+[e ( _Lcd_Clear ..  ]
+"82
+[; ;Lab04_main_master.c: 82: void Decimal(uint16_t variable){
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+"83
+[; ;Lab04_main_master.c: 83:     uint16_t valor;
+[e ( _Lcd_Write_String (1 :s 1C ]
+"84
+[; ;Lab04_main_master.c: 84:     valor = variable;
 [e :U 140 ]
 {
-"68
+"86
+[; ;Lab04_main_master.c: 86:     valor = (valor - (Unidad*100));
 [e ( _I2C_Master_Start ..  ]
-"69
+"87
+[; ;Lab04_main_master.c: 87:     Primer_decimal = (valor/10);
 [e ( _I2C_Master_Write (1 -> -> 113 `i `ui ]
-"70
-[e = _PORTB -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
-"71
+"88
+[; ;Lab04_main_master.c: 88:     valor = (valor - (Primer_decimal*10));
+[e = _POT -> ( _I2C_Master_Read (1 -> -> 0 `i `us `ui ]
+"89
+[; ;Lab04_main_master.c: 89:     Segundo_decimal = (valor);
 [e ( _I2C_Master_Stop ..  ]
-"72
+"90
+[; ;Lab04_main_master.c: 90: 
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"73
+"92
+[; ;Lab04_main_master.c: 92:     Primer_decimal = Primer_decimal + 48;
+[e ( _I2C_Master_Start ..  ]
+"93
+[; ;Lab04_main_master.c: 93:     Segundo_decimal = Segundo_decimal + 48;
+[e ( _I2C_Master_Write (1 -> -> 129 `i `ui ]
+"94
+[; ;Lab04_main_master.c: 94: 
+[e = _CONTADOR -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
+"95
+[; ;Lab04_main_master.c: 95: }
+[e ( _I2C_Master_Stop ..  ]
+"96
+[; ;Lab04_main_master.c: 96: 
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"98
+[; ;Lab04_main_master.c: 98: 
+[e ( _I2C_Master_Start ..  ]
+"99
+[; ;Lab04_main_master.c: 99: 
+[e ( _I2C_Master_Write (1 -> -> 144 `i `ui ]
+"100
+[; ;Lab04_main_master.c: 100: void setup(void){
+[e ( _I2C_Master_Write (1 -> -> 238 `i `ui ]
+"101
+[; ;Lab04_main_master.c: 101: 
+[e ( _I2C_Master_Stop ..  ]
+"102
+[; ;Lab04_main_master.c: 102:     OSCCONbits.IRCF2 = 1;
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"104
+[; ;Lab04_main_master.c: 104:     OSCCONbits.IRCF0 = 1;
+[e ( _I2C_Master_Start ..  ]
+"105
+[; ;Lab04_main_master.c: 105:     OSCCONbits.SCS = 1;
+[e ( _I2C_Master_Write (1 -> -> 144 `i `ui ]
+"106
+[; ;Lab04_main_master.c: 106: 
+[e ( _I2C_Master_Write (1 -> -> 170 `i `ui ]
+"107
+[; ;Lab04_main_master.c: 107: 
+[e ( _I2C_Master_Stop ..  ]
+"108
+[; ;Lab04_main_master.c: 108:     ANSELH = 0x00;
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"110
+[; ;Lab04_main_master.c: 110: 
+[e ( _I2C_Master_Start ..  ]
+"111
+[; ;Lab04_main_master.c: 111:     TRISA = 0x00;
+[e ( _I2C_Master_Write (1 -> -> 145 `i `ui ]
+"112
+[; ;Lab04_main_master.c: 112:     TRISB = 0x00;
+[e = _val_temp -> ( _I2C_Master_Read (1 -> -> 0 `i `us `ui ]
+"113
+[; ;Lab04_main_master.c: 113:     TRISC = 0x00;
+[e ( _I2C_Master_Stop ..  ]
+"114
+[; ;Lab04_main_master.c: 114:     TRISD = 0x00;
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"116
+[; ;Lab04_main_master.c: 116: 
+[e = _POT -> * -> _POT `d .1.961 `ui ]
+"117
+[; ;Lab04_main_master.c: 117:     PORTA = 0x00;
+[e ( _Decimal (1 _POT ]
+"118
+[; ;Lab04_main_master.c: 118:     PORTB = 0x00;
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"119
+[; ;Lab04_main_master.c: 119:     PORTC = 0x00;
+[e ( _Lcd_Write_Char (1 -> _Unidad `uc ]
+"120
+[; ;Lab04_main_master.c: 120:     PORTD = 0x00;
+[e ( _Lcd_Write_Char (1 -> -> 46 `i `uc ]
+"121
+[; ;Lab04_main_master.c: 121:     PORTE = 0x00;
+[e ( _Lcd_Write_Char (1 -> _Primer_decimal `uc ]
+"122
+[; ;Lab04_main_master.c: 122: 
+[e ( _Lcd_Write_Char (1 -> _Segundo_decimal `uc ]
+"123
+[; ;Lab04_main_master.c: 123: 
+[e ( _Lcd_Write_String (1 :s 2C ]
+"125
+[; ;Lab04_main_master.c: 125:     INTCONbits.PEIE = 0;
+[e ( _Decimal (1 -> _CONTADOR `ui ]
+"126
+[; ;Lab04_main_master.c: 126:     I2C_Master_Init(100000);
+[e ( _Lcd_Write_Char (1 -> _Unidad `uc ]
+"127
+[; ;Lab04_main_master.c: 127: }
+[e ( _Lcd_Write_Char (1 -> _Primer_decimal `uc ]
+"128
+[e ( _Lcd_Write_Char (1 -> _Segundo_decimal `uc ]
+"129
+[e ( _Lcd_Write_String (1 :s 3C ]
+"131
+[e ( _Decimal (1 _val_temp ]
+"132
+[e ( _Lcd_Write_Char (1 -> _Unidad `uc ]
+"133
+[e ( _Lcd_Write_Char (1 -> _Primer_decimal `uc ]
+"134
+[e ( _Lcd_Write_Char (1 -> _Segundo_decimal `uc ]
+"135
 }
 [e :U 139 ]
 [e $U 140  ]
 [e :U 141 ]
-"74
+"136
 [e $UE 138  ]
-"75
+"137
 [e :UE 138 ]
 }
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"80
+"142
 [v _isr `(v ~T1 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"81
+"143
 [e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
-"83
+"144
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"84
+"145
 [e :UE 142 ]
 }
-"89
+"150
+[v _Decimal `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _Decimal ]
+[v _variable `ui ~T0 @X0 1 r1 ]
+[f ]
+"151
+[v _valor `ui ~T0 @X0 1 a ]
+"152
+[e = _valor _variable ]
+"153
+[e = _Unidad -> / _valor -> -> 100 `i `ui `uc ]
+"154
+[e = _valor - _valor -> * -> _Unidad `i -> 100 `i `ui ]
+"155
+[e = _Primer_decimal -> / _valor -> -> 10 `i `ui `uc ]
+"156
+[e = _valor - _valor -> * -> _Primer_decimal `i -> 10 `i `ui ]
+"157
+[e = _Segundo_decimal -> _valor `uc ]
+"159
+[e = _Unidad -> + -> _Unidad `i -> 48 `i `uc ]
+"160
+[e = _Primer_decimal -> + -> _Primer_decimal `i -> 48 `i `uc ]
+"161
+[e = _Segundo_decimal -> + -> _Segundo_decimal `i -> 48 `i `uc ]
+"163
+[e :UE 143 ]
+}
+"168
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"91
+"170
 [e = . . _OSCCONbits 1 3 -> -> 1 `i `uc ]
-"92
+"171
 [e = . . _OSCCONbits 1 2 -> -> 1 `i `uc ]
-"93
+"172
 [e = . . _OSCCONbits 1 1 -> -> 1 `i `uc ]
-"94
+"173
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"97
+"176
 [e = _ANSELH -> -> 0 `i `uc ]
-"98
+"177
 [e = _ANSEL -> -> 0 `i `uc ]
-"100
+"179
 [e = _TRISA -> -> 0 `i `uc ]
-"101
+"180
 [e = _TRISB -> -> 0 `i `uc ]
-"102
+"181
 [e = _TRISC -> -> 0 `i `uc ]
-"103
+"182
 [e = _TRISD -> -> 0 `i `uc ]
-"104
+"183
 [e = _TRISE -> -> 0 `i `uc ]
-"106
+"185
 [e = _PORTA -> -> 0 `i `uc ]
-"107
+"186
 [e = _PORTB -> -> 0 `i `uc ]
-"108
+"187
 [e = _PORTC -> -> 0 `i `uc ]
-"109
+"188
 [e = _PORTD -> -> 0 `i `uc ]
-"110
+"189
 [e = _PORTE -> -> 0 `i `uc ]
-"113
+"192
 [e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
-"114
+"193
 [e = . . _INTCONbits 0 6 -> -> 0 `i `uc ]
-"115
+"194
 [e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
-"116
-[e :UE 143 ]
+"195
+[e :UE 144 ]
 }
+[a 1C 32 83 49 58 32 32 32 83 50 58 32 32 32 83 51 58 0 ]
+[a 2C 32 32 0 ]
+[a 3C 32 32 0 ]

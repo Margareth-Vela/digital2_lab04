@@ -2741,13 +2741,10 @@ void __attribute__((picinterrupt((""))))isr(void){
         }
 
         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
-
             z = SSPBUF;
-
             PIR1bits.SSPIF = 0;
             SSPCONbits.CKP = 1;
             while(!SSPSTATbits.BF);
-
             _delay((unsigned long)((250)*(8000000/4000000.0)));
 
         }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
